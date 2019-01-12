@@ -263,12 +263,12 @@ end
       end
     end
     in_thread do
-      4.times do
+      2.times do
         baseA
       end
     end
     in_thread do
-      2.times do
+      3.times do
         melodyC
       end
     end
