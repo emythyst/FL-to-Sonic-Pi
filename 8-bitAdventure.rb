@@ -1,11 +1,7 @@
 # 8-Bit Adventure by Emythyst
-# Original song:
 # https://www.youtube.com/watch?v=AqAW6hqNUwU
 
-# This is still a WIP and is incomplete. c:
-
 use_bpm 38
-use_synth :chiplead
 
 # Percussion (Beat)
 define :perc do
@@ -52,7 +48,7 @@ define :melodyA do
   end
 end
 
-# Melody A Baseline
+# Base A
 define :baseA do
   use_synth :chiplead
   in_thread do
@@ -66,7 +62,7 @@ end
 # Bridge
 define :bridge do
   use_synth :chiplead
-  4.times do
+  2.times do
     play_pattern_timed [:a3, :e4, :c4, :e4, :a3, :e4, :f4, :e4, :g3, :d4, :g3, :d4, :c4, :b3, :c4], [0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.25], amp: 1.2, release: 0
   end
 end
@@ -87,9 +83,9 @@ define :melodyC do
   end
 end
 
-# Final Song
+# Playlist (Song Arrangement)
 1.times do
-  in_thread(name: :mysong) do #named so that it doesn't overlap with multi Run clicks
+  in_thread(name: :mySong) do
     
     # Intro function
     intro
@@ -114,7 +110,9 @@ end
     
     # Combination Bridge, BaseA, and Bridge functions
     in_thread do
-      bridge
+      2.times do
+        bridge
+      end
     end
     in_thread do
       8.times do
@@ -154,7 +152,9 @@ end
         end
       end
       in_thread do
-        bridge
+        2.times do
+          bridge
+        end
       end
       4.times do
         baseA
@@ -166,17 +166,15 @@ end
       bridge
     end
     
-    #Bridge and MelodyC
-    1.times do
-      in_thread do
-        bridge
-      end
-      4.times do
-        melodyC
-      end
+    # Bridge with Melody C
+    in_thread do
+      bridge
+    end
+    2.times do
+      melodyC
     end
     
-    # Added Percussion and original baseA line
+    # Add the perc
     1.times do
       in_thread do
         4.times do
@@ -189,13 +187,92 @@ end
         end
       end
       in_thread do
-        bridge
+        2.times do
+          bridge
+        end
       end
       4.times do
         baseA
       end
     end
     
+    # Combination MelodyA, BaseA, and Perc functions
+    in_thread do
+      16.times do
+        perc
+      end
+    end
+    in_thread do
+      8.times do
+        baseA
+      end
+    end
+    1.times do
+      melodyA
+    end
     
+    # Combination of Melodies
+    in_thread do
+      16.times do
+        perc
+      end
+    end
+    in_thread do
+      2.times do
+        melodyB
+      end
+    end
+    in_thread do
+      8.times do
+        baseA
+      end
+    end
+    1.times do
+      melodyA
+    end
+    
+    # Headache portion of the song
+    in_thread do
+      16.times do
+        perc
+      end
+    end
+    in_thread do
+      2.times do
+        melodyB
+      end
+    end
+    in_thread do
+      8.times do
+        baseA
+      end
+    end
+    in_thread do
+      8.times do
+        melodyC
+      end
+    end
+    1.times do
+      melodyA
+    end
+    
+    # Nearing the end
+    in_thread do
+      1.times do
+        melodyB
+      end
+    end
+    in_thread do
+      4.times do
+        baseA
+      end
+    end
+    in_thread do
+      2.times do
+        melodyC
+      end
+    end
   end
 end
+
+# The end c:
