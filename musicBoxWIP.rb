@@ -1,18 +1,26 @@
 use_bpm 16
 
 define :snap do
-  sample :perc_snap2,
-    amp: 0.04,
-    rate: 1.3,
-    pan: 1
-  sample :perc_snap,
-    amp: 0.04,
-    rate: 1,
-    pan: -1
+  with_fx :reverb do
+    sample :perc_snap2,
+      amp: 0.03,
+      rate: 1.3,
+      pan: 1
+    sleep 0.0009
+    sample :perc_snap,
+      amp: 0.035,
+      rate: 1,
+      pan: -1
+    sleep 0.0009
+    sample :perc_snap,
+      amp: 0.03,
+      rate: 1,
+      pan: 0
+  end
 end
 
 define :kick do
-  #sample :bd_pure, amp: 0.4, rate: 1, release: 0
+  sample :bd_pure, amp: 0.2, rate: 1, release: 0
 end
 
 define :glitchL do
@@ -63,7 +71,7 @@ define :baseA do
     sample :elec_plip
     play_pattern_timed [:a3, :c3, :f3, :gs3, ],
       [1],
-      release: 1.5, amp: 1
+      release: 1.5, amp: 0.9
   end
 end
 
@@ -71,7 +79,7 @@ define :melodyA do
   use_synth :beep
   play_pattern_timed [:a4, nil, :e4, :a4, :b4, nil, :c5, :d5, :e5, nil, :f5, :e5, :d5, nil, :c5, :b4, :c5, nil, :e5, nil, :a4, nil, :e5, nil, :d5, :c5, :b4, :a4, :gs4, :a4, :b4, :c5],
     [0.125],
-    release: 0.3, amp: 0.8
+    release: 0.3, amp: 1
 end
 
 define :melodyB do
